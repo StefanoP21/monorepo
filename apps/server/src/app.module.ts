@@ -13,12 +13,9 @@ import { AuthMiddleware } from './user/middlewares/auth.middleware';
       rootPath: join(__dirname, '../../', 'client/dist'),
     }),
     UserModule,
-    MongooseModule.forRoot(
-      'mongodb://stefanop21:Suj8sSF8PjEpmn33@ac-baikakn-shard-00-00.hqkuczq.mongodb.net:27017,ac-baikakn-shard-00-01.hqkuczq.mongodb.net:27017,ac-baikakn-shard-00-02.hqkuczq.mongodb.net:27017/?replicaSet=atlas-vkdzjr-shard-0&ssl=true&authSource=admin',
-      {
-        dbName: 'monorepo',
-      },
-    ),
+    MongooseModule.forRoot(process.env.MONGO_CONNECTION_STRING, {
+      dbName: process.env.MONGO_DB_NAME,
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
